@@ -7,7 +7,12 @@
     "backend"
   ],
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "npm run dev -w frontend & npm run start:dev -w backend",
+    "start": "npm run start -w frontend & npm run start -w backend",
+    "lint": "npm run lint -w frontend && npm run lint -w backend",
+    "test": "npm run test -w backend",
+    "test:e2e": "npm run test:e2e -w backend && npm run test -w frontend"
   },
   "devDependencies": {
     "husky": "^9.0.0",
