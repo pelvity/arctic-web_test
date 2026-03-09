@@ -9,7 +9,9 @@
   "scripts": {
     "prepare": "husky",
     "dev:local": "npm run dev -w frontend & npm run start:dev -w backend",
-    "dev:docker": "docker-compose up --build",
+    "dev:docker": "docker compose up --build",
+    "db:up": "docker compose up -d mongodb",
+    "db:down": "docker compose down",
     "start": "npm run start -w frontend & npm run start -w backend",
     "lint": "npm run lint -w frontend && npm run lint -w backend",
     "test": "npm run test -w backend",

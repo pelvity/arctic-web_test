@@ -45,23 +45,27 @@ Default values in `.env`:
 
 ### 4. Running the Application
 
-You can run the application either entirely locally (requires local MongoDB) or via Docker (handles everything).
+There are three ways to run the application depending on your needs:
 
-#### Option A: Fully Local (Fastest Development)
-*Requires MongoDB running on localhost:27017*
+#### Option A: Hybrid (Recommended for Daily Dev)
+*Run Database in Docker, Code Locally.*
+1. Start MongoDB: `npm run db:up`
+2. Start App: `npm run dev:local`
+*This allows for the fastest hot-reloading while keeping setup clean.*
+
+#### Option B: Fully Local
+*Requires native MongoDB installed and running on localhost:27017.*
 ```bash
 npm run dev:local
 ```
-This runs both the Next.js and NestJS servers in the current terminal.
 
-#### Option B: Docker Compose (Isolated Environment)
-*Requires Docker and Docker Compose*
+#### Option C: Fully Dockerized
+*Runs everything in isolated containers.*
 ```bash
 npm run dev:docker
 ```
-This builds and starts MongoDB, the Backend, and the Frontend in containers.
 
->*Tip: You can also use the integrated VS Code Tasks (`Cmd/Ctrl + Shift + B`) and select either **Run All (Local)** or **Run All (Docker)**.*
+>*Tip: In VS Code, press `Cmd/Ctrl + Shift + B` to run any of these modes quickly.*
 
 ---
 

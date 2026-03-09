@@ -38,7 +38,7 @@
         {
             "label": "Run All (Docker)",
             "type": "shell",
-            "command": "docker-compose up --build",
+            "command": "docker compose up --build",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -47,6 +47,15 @@
                 "isDefault": true
             },
             "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Start MongoDB (Docker)",
+            "type": "shell",
+            "command": "docker compose up -d mongodb",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "problemMatcher": []
         }
     ]
