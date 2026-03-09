@@ -25,7 +25,7 @@ frontend/.env
 .DS_Store
 *.pem
 .idea/
-.vscode/
+
 
 # Logs
 logs
