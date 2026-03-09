@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "prepare": "husky",
-    "dev": "npm run dev -w frontend & npm run start:dev -w backend",
+    "dev:local": "npm run dev -w frontend & npm run start:dev -w backend",
+    "dev:docker": "docker-compose up --build",
     "start": "npm run start -w frontend & npm run start -w backend",
     "lint": "npm run lint -w frontend && npm run lint -w backend",
     "test": "npm run test -w backend",

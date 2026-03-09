@@ -2,19 +2,19 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run All (Dev)",
+            "label": "Run All (Local)",
             "dependsOn": [
-                "Backend (Dev)",
-                "Frontend (Dev)"
+                "Backend (Local)",
+                "Frontend (Local)"
             ],
             "group": {
-                "kind": "test",
-                "isDefault": true
+                "kind": "build",
+                "isDefault": false
             },
             "problemMatcher": []
         },
         {
-            "label": "Backend (Dev)",
+            "label": "Backend (Local)",
             "type": "shell",
             "command": "npm run start:dev",
             "options": {
@@ -26,11 +26,25 @@
             ]
         },
         {
-            "label": "Frontend (Dev)",
+            "label": "Frontend (Local)",
             "type": "shell",
             "command": "npm run dev",
             "options": {
                 "cwd": "${workspaceFolder}/frontend"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Run All (Docker)",
+            "type": "shell",
+            "command": "docker-compose up --build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
             "isBackground": true,
             "problemMatcher": []

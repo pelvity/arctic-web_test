@@ -43,15 +43,25 @@ Default values in `.env`:
 - `PORT`: `4000`
 - `NEXT_PUBLIC_API_URL`: `http://localhost:4000`
 
-### 4. Running the Application (Development)
-You can launch both the frontend and backend simultaneously from the root:
-```bash
-npm run dev
-```
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
-- **Backend API**: [http://localhost:4000](http://localhost:4000)
+### 4. Running the Application
 
-*Or use the **VS Code "Run All (Dev)" task** (Cmd/Ctrl + Shift + B).*
+You can run the application either entirely locally (requires local MongoDB) or via Docker (handles everything).
+
+#### Option A: Fully Local (Fastest Development)
+*Requires MongoDB running on localhost:27017*
+```bash
+npm run dev:local
+```
+This runs both the Next.js and NestJS servers in the current terminal.
+
+#### Option B: Docker Compose (Isolated Environment)
+*Requires Docker and Docker Compose*
+```bash
+npm run dev:docker
+```
+This builds and starts MongoDB, the Backend, and the Frontend in containers.
+
+>*Tip: You can also use the integrated VS Code Tasks (`Cmd/Ctrl + Shift + B`) and select either **Run All (Local)** or **Run All (Docker)**.*
 
 ---
 
