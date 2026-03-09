@@ -2,15 +2,50 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run All (Local)",
+            "label": "🚀 Run All (Hybrid: Docker DB + Local Code)",
+            "dependsOn": [
+                "Start MongoDB (Docker)",
+                "Run App (Local)"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🐳 Run All (Full Docker)",
+            "type": "shell",
+            "command": "npm run dev:docker",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "💻 Run All (Fully Local)",
             "dependsOn": [
                 "Backend (Local)",
                 "Frontend (Local)"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run App (Local)",
+            "type": "shell",
+            "command": "npm run dev:local",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Start MongoDB (Docker)",
+            "type": "shell",
+            "command": "npm run db:up",
+            "problemMatcher": []
+        },
+        {
+            "label": "Stop Docker Services",
+            "type": "shell",
+            "command": "npm run db:down",
             "problemMatcher": []
         },
         {
@@ -36,27 +71,22 @@
             "problemMatcher": []
         },
         {
-            "label": "Run All (Docker)",
+            "label": "🧪 Run Tests (Backend Unit)",
             "type": "shell",
-            "command": "docker compose up --build",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "isBackground": true,
-            "problemMatcher": []
+            "command": "npm test -w backend",
+            "group": "test",
+            "problemMatcher": [
+                "$tsc"
+            ]
         },
         {
-            "label": "Start MongoDB (Docker)",
+            "label": "🧪 Run Tests (Backend E2E)",
             "type": "shell",
-            "command": "docker compose up -d mongodb",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
+            "command": "npm run test:e2e -w backend",
+            "group": "test",
+            "problemMatcher": [
+                "$tsc"
+            ]
         }
     ]
 }

@@ -1,10 +1,10 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 COPY frontend/package.json frontend/
-RUN npm ci --workspace=frontend
+RUN npm ci --workspace=frontend --ignore-scripts
 
 COPY frontend/ .
 
@@ -13,4 +13,4 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev", "--workspace=frontend"]
+CMD ["sh", "-c", "cd frontend && npm run dev"]
