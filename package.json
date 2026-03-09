@@ -18,5 +18,15 @@
     "husky": "^9.0.0",
     "lint-staged": "^15.0.0",
     "prettier": "^3.0.0"
+  },
+  "lint-staged": {
+    "frontend/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint -w frontend",
+      "prettier --write"
+    ],
+    "backend/**/*.{js,ts}": [
+      "npm run lint -w backend",
+      "prettier --write"
+    ]
   }
 }

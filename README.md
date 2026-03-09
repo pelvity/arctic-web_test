@@ -15,10 +15,17 @@ A high-performance, polished service for saving and searching useful code snippe
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
-- Node.js (v20+ recommended)
-- MongoDB (Running locally or via Atlas)
+- Node.js (v20+ recommended, v18+ supported)
+- Docker & Docker Compose (for MongoDB)
 
-### 2. Installation
+### 2. Infrastructure (MongoDB)
+Start the database using Docker:
+```bash
+docker-compose up -d
+```
+*(If you don't have Docker, ensure MongoDB is running on localhost:27017)*
+
+### 3. Installation
 Clone the repository and install dependencies from the root:
 ```bash
 npm install

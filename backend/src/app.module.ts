@@ -9,6 +9,7 @@ import { SnippetsModule } from './snippets/snippets.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

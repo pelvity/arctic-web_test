@@ -33,9 +33,7 @@
                 "cwd": "${workspaceFolder}/frontend"
             },
             "isBackground": true,
-            "problemMatcher": [
-                "$nextjs"
-            ]
+            "problemMatcher": []
         }
     ]
 }
