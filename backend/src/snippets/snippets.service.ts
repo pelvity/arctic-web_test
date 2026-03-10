@@ -16,30 +16,32 @@ export class SnippetsService {
     return createdSnippet.save();
   }
 
-  async findAll(page: number = 1, limit: number = 10, q?: string, tag?: string) {
+  async findAll(page: number = 1, limit: number = 10, q?: string, tag?: string, type?: string) {
     const query: any = {};
 
     if (q) {
-      query.$text = { $search: q };
+      query.$or = [
+        { title: { $regex: q, $options: 'i' } },
+        { content: { $regex: q, $options: 'i' } },
+        { tags: { $regex: q, $options: 'i' } }
+      ];
     }
 
     if (tag) {
       query.tags = tag;
     }
 
+    if (type) {
+      query.type = type;
+    }
+
     const total = await this.snippetModel.countDocuments(query);
     const data = await this.snippetModel
       .find(query)
-      .sort({ createdAt: -1 }) // Sort purely by creation date, or score if searching
+      .sort({ createdAt: -1 }) // Sort purely by creation date
       .skip((page - 1) * limit)
       .limit(limit)
       .exec();
-
-    // Re-sort by text score if search is present
-    if (q) {
-      data.sort((a: any, b: any) => b.score - a.score);
-      // Wait, Mongoose text search score sort requires projection. Let's simplify.
-    }
 
     return {
       data,
@@ -48,6 +50,10 @@ export class SnippetsService {
       limit,
       totalPages: Math.ceil(total / limit),
     };
+  }
+
+  async findAllTags(): Promise<string[]> {
+    return this.snippetModel.distinct('tags').exec();
   }
 
   async findOne(id: string): Promise<Snippet> {

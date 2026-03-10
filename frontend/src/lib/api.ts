@@ -14,7 +14,10 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         // We could toast errors here if we had a toast system
-        console.error('API Error:', error.response?.data?.message || error.message);
+        // Prevent 404 errors from cluttering the console, since components handle them
+        if (error.response?.status !== 404) {
+            console.error('API Error:', error.response?.data?.message || error.message);
+        }
         return Promise.reject(error);
     }
 );

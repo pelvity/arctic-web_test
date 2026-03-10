@@ -29,8 +29,14 @@ export class SnippetsController {
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('q') q?: string,
     @Query('tag') tag?: string,
+    @Query('type') type?: string,
   ) {
-    return this.snippetsService.findAll(page, limit, q, tag);
+    return this.snippetsService.findAll(page, limit, q, tag, type);
+  }
+
+  @Get('tags')
+  findAllTags() {
+    return this.snippetsService.findAllTags();
   }
 
   @Get(':id')
