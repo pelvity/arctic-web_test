@@ -28,7 +28,7 @@ export class SnippetsController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('q') q?: string,
-    @Query('tag') tag?: string,
+    @Query('tags') tag?: string,
     @Query('type') type?: string,
   ) {
     return this.snippetsService.findAll(page, limit, q, tag, type);
