@@ -6,79 +6,60 @@ A high-performance, polished service for saving and searching useful code snippe
 
 ## 🛠 Tech Stack
 
-- **Frontend**: Next.js 14, Tailwind CSS, SWR, Axios, Lucide React, Playwright.
-- **Backend**: NestJS, Mongoose, Class-Validator, MongoDB.
-- **Environment**: TypeScript, Husky, Lint-staged, EditorConfig.
+- **Frontend**: Next.js 14, Tailwind CSS 4, SWR, Axios, Lucide React, Playwright.
+- **Backend**: NestJS 11, Mongoose, Class-Validator, MongoDB.
+- **Environment**: TypeScript, Husky, Lint-staged.
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
-- Node.js (v20+ recommended, v18+ supported)
+- **Node.js v20+ (LTS) Required**
 - Docker & Docker Compose (for MongoDB)
 
 ### 2. Infrastructure (MongoDB)
 Start the database using Docker:
 ```bash
-docker-compose up -d
+npm run db:up
 ```
-*(If you don't have Docker, ensure MongoDB is running on localhost:27017)*
+*(Uses Docker Compose to start a MongoDB instance on port 27017)*
 
 ### 3. Installation
-Clone the repository and install dependencies from the root:
+Install dependencies from the root (uses workspaces):
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
-### 3. Environment Setup
-Copy the example files and fill in your connection strings:
+### 4. Environment Setup
+Copy the example files and verify configuration:
 ```bash
 cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
 ```
 
-Default values in `.env`:
-- `MONGODB_URI`: `mongodb://localhost:27017/mini-snippet-vault`
-- `PORT`: `4000`
-- `NEXT_PUBLIC_API_URL`: `http://localhost:4000`
+### 5. Running the Application (Hybrid Workflow)
+The recommended development workflow is to run the database in Docker and the applications locally for the fastest hot-reloading:
 
-### 4. Running the Application
-
-There are three ways to run the application depending on your needs:
-
-#### Option A: Hybrid (Recommended for Daily Dev)
-*Run Database in Docker, Code Locally.*
-1. Start MongoDB: `npm run db:up`
-2. Start App: `npm run dev:local`
-*This allows for the fastest hot-reloading while keeping setup clean.*
-
-#### Option B: Fully Local
-*Requires native MongoDB installed and running on localhost:27017.*
 ```bash
+# Start the full environment (Hybrid)
 npm run dev:local
 ```
 
-#### Option C: Fully Dockerized
-*Runs everything in isolated containers.*
-```bash
-npm run dev:docker
-```
-
->*Tip: In VS Code, press `Cmd/Ctrl + Shift + B` to run any of these modes quickly.*
+Other options:
+- **Fully Local**: `npm run dev:local` (if MongoDB is running natively).
+- **Fully Dockerized**: `npm run dev:docker`.
 
 ---
 
 ## 🧪 Testing
 
-### Backend (Jest + MongoDB Memory Server)
-Isolated integration tests for CRUD and Search:
+### Backend (Integration)
 ```bash
 npm test -w backend
 ```
 
-### Frontend (Playwright)
-End-to-end user flow testing:
+### Frontend (E2E)
 ```bash
 npm run test -w frontend
 ```
@@ -91,28 +72,23 @@ npm run test -w frontend
 
 | Method | Endpoint | Description | Query Params |
 |--------|----------|-------------|--------------|
-| GET | `/snippets` | List all snippets | `page`, `limit`, `q` (search), `tag` |
+| GET | `/snippets` | List all snippets | `page`, `limit`, `q` (search), `tags` |
 | GET | `/snippets/:id` | Get snippet by ID | - |
 | POST | `/snippets` | Create a snippet | - |
 | PATCH | `/snippets/:id`| Update a snippet | - |
 | DELETE | `/snippets/:id`| Delete a snippet | - |
 
 **Example Search Request:**
-`GET http://localhost:4000/snippets?q=docker&tag=devops`
+`GET http://localhost:4000/snippets?q=docker&tags=devops`
 
 ---
 
 ## 🏗 Production Build
 
-To build and start the production-ready application:
 ```bash
-# Build both apps
-npm run build -w frontend
-npm run build -w backend
-
-# Start production servers
-npm run start -w frontend
-npm run start -w backend
+# Build and Start
+npm run build
+npm run start
 ```
 
 ---
@@ -120,17 +96,8 @@ npm run start -w backend
 ## 📝 Project Structure
 ```text
 .
-├── frontend/          # Next.js App Router (UI & E2E Tests)
-├── backend/           # NestJS REST API (Logic & Mongoose)
+├── frontend/          # Next.js App Router (UI)
+├── backend/           # NestJS REST API (Logic)
 ├── package.json       # Root Workspace Configuration
-├── .github/workflows/ # CI Pipeline
 └── README.md
 ```
-
----
-
-## 💡 Notes for Reviewers
-- **Strict Validation**: All API inputs are validated via `class-validator`.
-- **Performance**: MongoDB text indexes are used for the `q` search query.
-- **UX**: The UI follows a premium dark theme logic with loading/empty states and responsive design.
-- **Testing**: Includes both backend isolated integration tests and frontend E2E tests.
