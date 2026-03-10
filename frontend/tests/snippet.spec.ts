@@ -10,19 +10,20 @@ test.describe('Mini Snippet Vault E2E', () => {
         await expect(page.locator('text=Snippet Vault')).toBeVisible();
 
         // 2. Navigate to Create Page
-        await page.click('text=New Snippet');
+        await page.click('text=Add New');
         await expect(page).toHaveURL(/.*\/snippets\/new/);
 
         // 3. Fill and Submit Form
-        await page.fill('input[placeholder="e.g. Docker Compose Postgres Setup"]', uniqueTitle);
+        await page.fill('input[placeholder="e.g., Setup Docker Compose"]', uniqueTitle);
         await page.fill('textarea', 'console.log("Playwright Test");');
         await page.click('text=Command');
 
         // Add a Tag
-        await page.fill('input[placeholder="Type tag and press Enter or comma..."]', 'e2e');
+        await page.fill('input[placeholder="e.g., devops, database (press Enter)"]', 'e2e');
         await page.keyboard.press('Enter');
 
-        await page.click('button:has-text("Save")');
+        // The exact text depends on missing i18n keys or actual text, better use general locator
+        await page.click('button.bg-blue-600');
 
         // 4. Verify Detail Page Redirect
         await page.waitForURL(/\/snippets\/[a-f0-9]{24}/);
@@ -43,20 +44,20 @@ test.describe('Mini Snippet Vault E2E', () => {
 
         // 7. Edit the snippet
         const updatedTitle = `${uniqueTitle} (Updated)`;
-        await page.fill('input[placeholder="e.g. Docker Compose Postgres Setup"]', updatedTitle);
-        await page.click('button:has-text("Save")');
+        await page.fill('input[placeholder="e.g., Setup Docker Compose"]', updatedTitle);
+        await page.click('button.bg-blue-600');
 
         // 8. Verify Edit
         await page.waitForURL(/\/snippets\/[a-f0-9]{24}/);
         await expect(page.locator(`h3:has-text("${updatedTitle}")`)).toBeVisible();
 
         // 9. Delete the snippet
-        page.on('dialog', dialog => dialog.accept());
-        // Find the button with the trash icon (or destructive variant)
-        await page.click('button.bg-red-600');
+        // Handling the two-step delete: Click Delete -> Click Confirm
+        await page.click('button:has(.lucide-trash2)'); // Click initial delete button
+        await page.click('button:has-text("Confirm")'); // Click confirm button
 
-        // 10. Verify deletion (redirects to Home)
-        await page.waitForURL(/\/$/);
+        // 10. Verify deletion (redirects to Home with locale prefix)
+        await page.waitForURL(/\/(en|uk|ua)?$/);
         await page.fill('input[placeholder="Search snippets..."]', updatedTitle);
         await expect(page.locator(`h3:has-text("${updatedTitle}")`)).toHaveCount(0);
     });
