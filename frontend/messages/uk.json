@@ -1,0 +1,65 @@
+{
+    "Index": {
+        "title": "Сховище Сніпетів",
+        "searchPlaceholder": "Пошук сніпетів...",
+        "newSnippet": "Новий Сніпет",
+        "emptyState": "Сніпетів не знайдено. Створіть перший!",
+        "failedLoad": "Не вдалося завантажити сніпети. Перевірте, чи працює бекенд.",
+        "links": "Посилання",
+        "notes": "Нотатки",
+        "commands": "Команди",
+        "filteringByTag": "Фільтрація за тегом:",
+        "loadingSnippets": "Завантаження сніпетів зі сховища...",
+        "page": "Сторінка",
+        "of": "з",
+        "previous": "Попередня",
+        "next": "Наступна",
+        "updated": "Оновлено",
+        "allTypes": "Усі",
+        "all": "Усі",
+        "copy": "Копіювати",
+        "copied": "Скопійовано в буфер обміну!",
+        "addNew": "Додати Новий",
+        "snippetTypes": {
+            "note": "Нотатка",
+            "command": "Команда",
+            "link": "Посилання"
+        }
+    },
+    "SnippetForm": {
+        "createTitle": "Створити Сніпет",
+        "editTitle": "Редагувати Сніпет",
+        "titleLabel": "Назва",
+        "titlePlaceholder": "напр., Налаштування Docker Compose",
+        "typeLabel": "Тип",
+        "contentLabel": "Вміст",
+        "contentPlaceholder": "Вставте код, посилання або нотатку сюди...",
+        "tagsLabel": "Теги",
+        "tagsPlaceholder": "напр., devops, database (натисніть Enter)",
+        "cancel": "Скасувати",
+        "save": "Зберегти Сніпет",
+        "saving": "Збереження...",
+        "typeNote": "Нотатка",
+        "typeCommand": "Команда",
+        "typeLink": "Посилання",
+        "copy": "Копіювати",
+        "copied": "Скопійовано в буфер обміну!"
+    },
+    "SnippetDetail": {
+        "back": "Повернутися",
+        "edit": "Редагувати",
+        "delete": "Видалити",
+        "deleting": "Видалення...",
+        "cancel": "Скасувати",
+        "confirm": "Підтвердити",
+        "lastUpdated": "Останнє оновлення",
+        "copy": "Копіювати",
+        "copied": "Скопійовано в буфер обміну!"
+    },
+    "Toast": {
+        "successCreated": "Сніпет успішно створено",
+        "successUpdated": "Сніпет успішно оновлено",
+        "successDeleted": "Сніпет успішно видалено",
+        "errorGeneral": "Щось пішло не так"
+    }
+}

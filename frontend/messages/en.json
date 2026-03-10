@@ -1,0 +1,67 @@
+{
+    "Index": {
+        "title": "Snippet Vault",
+        "searchPlaceholder": "Search snippets...",
+        "newSnippet": "New Snippet",
+        "emptyState": "No snippets found. Create your first one!",
+        "failedLoad": "Failed to load snippets. Check if the backend is running.",
+        "links": "Links",
+        "notes": "Notes",
+        "commands": "Commands",
+        "filteringByTag": "Filtering by tag:",
+        "loadingSnippets": "Loading snippets from vault...",
+        "page": "Page",
+        "of": "of",
+        "previous": "Previous",
+        "next": "Next",
+        "updated": "Updated",
+        "allTypes": "All",
+        "all": "All",
+        "copy": "Copy",
+        "copied": "Copied to clipboard!",
+        "addNew": "Add New",
+        "snippetTypes": {
+            "note": "Note",
+            "command": "Command",
+            "link": "Link"
+        }
+    },
+    "SnippetForm": {
+        "createNewSnippet": "Create New Snippet",
+        "editSnippet": "Edit Snippet",
+        "createTitle": "Create Snippet",
+        "editTitle": "Edit Snippet",
+        "titleLabel": "Title",
+        "titlePlaceholder": "e.g., Setup Docker Compose",
+        "typeLabel": "Type",
+        "contentLabel": "Content",
+        "contentPlaceholder": "Paste your code, link, or note here...",
+        "tagsLabel": "Tags",
+        "tagsPlaceholder": "e.g., devops, database (press Enter)",
+        "cancel": "Cancel",
+        "save": "Save Snippet",
+        "saving": "Saving...",
+        "typeNote": "Note",
+        "typeCommand": "Command",
+        "typeLink": "Link",
+        "copy": "Copy",
+        "copied": "Copied to clipboard!"
+    },
+    "SnippetDetail": {
+        "back": "Back to Vault",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleting": "Deleting...",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "lastUpdated": "Last updated",
+        "copy": "Copy",
+        "copied": "Copied to clipboard!"
+    },
+    "Toast": {
+        "successCreated": "Snippet created successfully",
+        "successUpdated": "Snippet updated successfully",
+        "successDeleted": "Snippet deleted successfully",
+        "errorGeneral": "Something went wrong"
+    }
+}
