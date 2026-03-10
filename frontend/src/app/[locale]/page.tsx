@@ -167,7 +167,7 @@ export default function Home() {
         </div>
       ) : (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[800px] content-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-start">
             {data?.data.map((snippet) => (
               <Link key={snippet._id} href={`/snippets/${snippet._id}`} className="block group">
                 <Card className="h-full flex flex-col hover:border-blue-500/50 transition-colors duration-300 bg-gradient-to-b from-zinc-900 to-[#0e0e11]">
@@ -221,10 +221,14 @@ export default function Home() {
                 </Card>
               </Link>
             ))}
+            {/* Standard approach: Ghost slots to maintain grid geometry and prevent jumping */}
+            {data && data.data.length < limit && Array.from({ length: limit - data.data.length }).map((_, i) => (
+              <div key={`ghost-${i}`} className="hidden lg:block h-full min-h-[180px]" />
+            ))}
           </div>
 
           {data && data.totalPages > 1 && (
-            <div className="flex items-center justify-center gap-4 pt-4">
+            <div className="flex items-center justify-center gap-4 pt-2">
               <Button
                 variant="outline"
                 size="sm"
