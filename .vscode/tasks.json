@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🚀 Run All (Hybrid: Docker DB + Local Code)",
+            "label": "🚀 [DEV] Hybrid (Docker DB + Local Apps)",
             "dependsOn": [
                 "Start MongoDB (Docker)",
                 "Run App (Local)"
@@ -15,18 +15,45 @@
             "problemMatcher": []
         },
         {
-            "label": "🐳 Run All (Full Docker)",
+            "label": "🛠️ [DEV] Full Setup (Install + Start Hybrid)",
+            "dependsOn": [
+                "📦 [DEV] Install Dependencies",
+                "🚀 [DEV] Hybrid (Docker DB + Local Apps)"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        {
+            "label": "📦 [DEV] Install Dependencies",
+            "type": "shell",
+            "command": "npm install --legacy-peer-deps && npm install --prefix frontend --legacy-peer-deps && npm install --prefix backend --legacy-peer-deps",
+            "problemMatcher": []
+        },
+        {
+            "label": "🐳 [DEV] All Docker (Full Containerization)",
             "type": "shell",
             "command": "npm run dev:docker",
             "isBackground": true,
             "problemMatcher": []
         },
         {
-            "label": "💻 Run All (Fully Local)",
+            "label": "💻 [DEV] Fully Local (No Docker)",
             "dependsOn": [
                 "Backend (Local)",
                 "Frontend (Local)"
             ],
+            "problemMatcher": []
+        },
+        {
+            "label": "🚀 [PROD] Build & Start (Local)",
+            "type": "shell",
+            "command": "npm run build && npm run start",
+            "problemMatcher": []
+        },
+        {
+            "label": "🐳 [PROD] Docker Compose (All Services)",
+            "type": "shell",
+            "command": "docker compose up -d",
             "problemMatcher": []
         },
         {
@@ -71,7 +98,13 @@
             "problemMatcher": []
         },
         {
-            "label": "🧪 Run Tests (Backend Unit)",
+            "label": "🧹 [DEV] Clean Build Folders",
+            "type": "shell",
+            "command": "sudo rm -rf backend/dist frontend/.next",
+            "problemMatcher": []
+        },
+        {
+            "label": "🧪 [TEST] Backend Unit",
             "type": "shell",
             "command": "npm test -w backend",
             "group": "test",
@@ -80,7 +113,7 @@
             ]
         },
         {
-            "label": "🧪 Run Tests (Backend E2E)",
+            "label": "🧪 [TEST] Backend E2E",
             "type": "shell",
             "command": "npm run test:e2e -w backend",
             "group": "test",
