@@ -27,6 +27,8 @@
         }
     },
     "SnippetForm": {
+        "createNewSnippet": "Створити новий сніпет",
+        "editSnippet": "Редагувати сніпет",
         "createTitle": "Створити Сніпет",
         "editTitle": "Редагувати Сніпет",
         "titleLabel": "Назва",
@@ -50,6 +52,7 @@
         "edit": "Редагувати",
         "delete": "Видалити",
         "deleting": "Видалення...",
+        "cancel": "Скасувати",
         "lastUpdated": "Останнє оновлення",
         "confirm": "Підтвердити",
         "copy": "Копіювати",
