@@ -6,8 +6,9 @@ COPY package.json package-lock.json ./
 COPY backend/package.json backend/
 RUN npm ci --workspace=backend --ignore-scripts
 
-COPY backend/ .
+COPY backend/ ./backend/
+RUN npm run build --workspace=backend
 
 EXPOSE 4000
 
-CMD ["sh", "-c", "cd backend && npm run start:dev"]
+CMD ["npm", "run", "start:prod", "--workspace=backend"]

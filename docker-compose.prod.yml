@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: snippet-vault-db-prod
+    restart: always
+    ports:
+      - '27018:27017' # Using a different port to avoid conflict if any
+    volumes:
+      - mongodb_data_prod:/data/db
+
+  backend:
+    image: 629236738045.dkr.ecr.eu-north-1.amazonaws.com/arctic-web-backend:latest
+    container_name: snippet-vault-backend-prod
+    restart: always
+    ports:
+      - '4000:4000'
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/mini-snippet-vault
+      - PORT=4000
+      - FRONTEND_URL=https://frontend-pelvitys-projects.vercel.app
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data_prod:
